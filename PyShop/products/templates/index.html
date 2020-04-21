@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% comment %} 
+    TemplateSyntaxError at /pdts/
+    <ExtendsNode: extends 'base.html'> must be the first tag in the template.
+{% endcomment %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Products</h1>
+    <div class="row">
+    {% for product in products%}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap">
+                {% comment %} <img class="card-img-top" src="../static/products/images/orange.jpeg" alt="Card image cap"> {% endcomment %}
+                {% comment %} <img class="card-img-top" src="{% static 'products/images/orange.jpeg' %}" alt="Card image cap"> {% endcomment %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">$ {{ product.price }}</p>
+                    <a href="#" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        </div col>
+    {% endfor %}
+    </div row>
+
+    {% comment %} 
+    {% for product in products%}
+        <ul><li>{{ product }}</li></ul>
+        Orange, 1.99
+        Strawberry, 2.99
+    {% endfor %} 
+    {% endcomment %}
+
+{% endblock content %}
